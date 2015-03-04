@@ -18,7 +18,7 @@ class wagtail::site::staging::{{ cookiecutter.repo_name }}wagtail inherits wagta
         staticdir        => "static",
         mediadir         => "media",
         deploy           => [ '@admin' ], # CHANGEME
-        python_version   => '2.7-local',
+        python_version   => '3.4-local',
         manade_daemons   => [
             'celery worker -C -c1 -A {{ cookiecutter.repo_name }}',
             'celery beat -A {{ cookiecutter.repo_name }} -C -s $TMPDIR/celerybeat.db --pidfile=',
