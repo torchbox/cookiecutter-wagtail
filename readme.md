@@ -22,7 +22,7 @@ Firstly, make sure cookiecutter is installed: [Installation](http://cookiecutter
 
 Then run:
 
-     cookiecutter https://github.com/kaedroho/wagtail-cookiecutter.git
+     cookiecutter https://github.com/torchbox/wagtail-cookiecutter.git
 
 
 Answer the questions and you're done!
