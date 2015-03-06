@@ -6,6 +6,7 @@ class wagtail::site::staging::{{ cookiecutter.repo_name }}wagtail inherits wagta
         manage_ip        => false,
         manage_db        => true,
         manage_user      => true,
+        manage_settings  => false,
         settings         => '{{ cookiecutter.repo_name }}/settings',
         wsgi_module      => '{{ cookiecutter.repo_name }}.wsgi',
         requirements     => 'requirements.txt',

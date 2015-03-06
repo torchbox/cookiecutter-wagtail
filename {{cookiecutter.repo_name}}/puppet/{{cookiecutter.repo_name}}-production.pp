@@ -6,6 +6,7 @@ class wagtail::site::production::{{ cookiecutter.repo_name }}wagtail inherits wa
         manage_ip        => false,
         manage_db        => true,
         manage_user      => true,
+        manage_settings  => false,
         settings         => '{{ cookiecutter.repo_name }}/settings',
         wsgi_module      => '{{ cookiecutter.repo_name }}.wsgi',
         requirements     => 'requirements.txt',
