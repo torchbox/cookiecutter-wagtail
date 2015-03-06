@@ -2,17 +2,17 @@ from fabric.api import *
 
 
 env.roledefs = {
-    'staging': [],
     'production': [],
+    'staging': [],
 }
 
 
-@roles('staging')
-def deploy_staging():
+@roles('production')
+def deploy_production():
     # Remove this line when you're happy that this task is correct
     raise RuntimeError("Please check the fabfile before using it")
 
-    run('git pull origin staging')
+    run('git pull origin master')
     run('pip install -r requirements.txt')
     run('django-admin migrate --noinput')
     run('django-admin collectstatic --noinput')
@@ -23,12 +23,12 @@ def deploy_staging():
     run('restart')
 
 
-@roles('production')
-def deploy_production():
+@roles('staging')
+def deploy_staging():
     # Remove this line when you're happy that this task is correct
     raise RuntimeError("Please check the fabfile before using it")
 
-    run('git pull origin master')
+    run('git pull origin staging')
     run('pip install -r requirements.txt')
     run('django-admin migrate --noinput')
     run('django-admin collectstatic --noinput')
