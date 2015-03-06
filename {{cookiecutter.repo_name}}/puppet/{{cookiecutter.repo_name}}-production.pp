@@ -17,7 +17,7 @@ class wagtail::site::production::{{ cookiecutter.repo_name }}wagtail inherits wa
         django_version   => '1.7',
         staticdir        => "static",
         mediadir         => "media",
-        deploy           => [ '@admin' ], # CHANGEME
+        deploy           => [ '@admin', '@wagtail' ], # CHANGEME
         python_version   => '3.4',
         pg_version       => '9.4',
         manage_daemons   => [
