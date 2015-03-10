@@ -1,16 +1,16 @@
 #!/bin/bash
 
-{{ cookiecutter.repo_name }}=$1
+PROJECT_NAME=$1
 
 PROJECT_DIR=/vagrant
-VIRTUALENV_DIR=/home/vagrant/.virtualenvs/${{ cookiecutter.repo_name }}
+VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
 
 # Create database
-su - vagrant -c "createdb ${{ cookiecutter.repo_name }}"
+su - vagrant -c "createdb $PROJECT_NAME"
 
 
 # Virtualenv setup for project
