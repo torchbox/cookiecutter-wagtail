@@ -37,13 +37,13 @@ su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
 # Add a couple of aliases to manage.py into .bashrc
 cat << EOF >> /home/vagrant/.bashrc
 export PYTHONPATH=$PROJECT_DIR
-export DJANGO_SETTINGS_MODULE=${{ cookiecutter.repo_name }}.settings.dev
+export DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.dev
 
 alias dj="django-admin"
 alias djrun="dj runserver 0.0.0.0:8000"
-alias djcelery="celery -A {{ cookiecutter.repo_name }} worker --loglevel=info -s /tmp/celerybeat-schedule \$1"
+alias djcelery="celery -A $PROJECT_NAME worker --loglevel=info -s /tmp/celerybeat-schedule \$1"
 
 source $VIRTUALENV_DIR/bin/activate
-export PS1="[${{ cookiecutter.repo_name }} \W]\\$ "
+export PS1="[$PROJECT_NAME \W]\\$ "
 cd $PROJECT_DIR
 EOF
