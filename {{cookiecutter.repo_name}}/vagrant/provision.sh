@@ -41,6 +41,7 @@ export DJANGO_SETTINGS_MODULE=${{ cookiecutter.repo_name }}.settings.dev
 
 alias dj="django-admin"
 alias djrun="dj runserver 0.0.0.0:8000"
+alias djcelery="celery -A {{ cookiecutter.repo_name }} worker --loglevel=info -s /tmp/celerybeat-schedule \$1"
 
 source $VIRTUALENV_DIR/bin/activate
 export PS1="[${{ cookiecutter.repo_name }} \W]\\$ "
