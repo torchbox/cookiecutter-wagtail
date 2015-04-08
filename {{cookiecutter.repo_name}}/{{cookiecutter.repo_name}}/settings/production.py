@@ -1,3 +1,4 @@
+import os
 from .base import *
 
 # Do not set SECRET_KEY, Postgres or LDAP password or any other sensitive data here.
