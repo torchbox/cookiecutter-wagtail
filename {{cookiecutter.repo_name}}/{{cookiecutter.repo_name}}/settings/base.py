@@ -8,18 +8,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-from os.path import abspath, basename, dirname, join, normpath
-from sys import path
+from os.path import abspath, dirname, join, normpath
 
 # Absolute filesystem path to the Django project directory:
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
 
 # Absolute filesystem path to the top-level project folder:
 PROJECT_ROOT = dirname(DJANGO_ROOT)
-
-# Add our project to our pythonpath, this way we don't need to type our project
-# name in our dotted import paths:
-path.append(DJANGO_ROOT)
 
 
 # Quick-start development settings - unsuitable for production
