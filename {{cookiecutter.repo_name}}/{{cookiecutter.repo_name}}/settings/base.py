@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailforms',
 
     '{{ cookiecutter.repo_name }}.utils',
+    '{{ cookiecutter.repo_name }}.search',
     '{{ cookiecutter.repo_name }}.home',
 )
 
