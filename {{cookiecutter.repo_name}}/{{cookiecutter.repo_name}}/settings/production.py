@@ -45,6 +45,26 @@ if 'PRIMARY_HOST' in env:
 if 'SERVER_EMAIL' in env:
     SERVER_EMAIL = env['SERVER_EMAIL']
 
+if 'CACHE_PURGE_URL' in env:
+    INSTALLED_APPS += ( 'wagtail.contrib.wagtailfrontendcache', )
+    WAGTAILFRONTENDCACHE = {
+        'default': {
+            'BACKEND': 'wagtail.contrib.wagtailfrontendcache.backends.HTTPBackend',
+            'LOCATION': env['CACHE_PURGE_URL'],
+        },
+    }
+
+if 'STATIC_URL' in env:
+    STATIC_URL = env['STATIC_URL']
+
+if 'STATIC_DIR' in env:
+    STATIC_DIR = env['STATIC_DIR']
+
+if 'MEDIA_URL' in env:
+    MEDIA_URL = env['MEDIA_URL']
+
+if 'MEDIA_DIR' in env:
+    MEDIA_DIR = env['MEDIA_DIR']
 
 # Database
 
