@@ -1,8 +1,8 @@
 # vim:ts=4 sw=4 et:
 class wagtail::site::staging::{{ cookiecutter.repo_name }}wagtail inherits wagtail::site::staging {
     wagtail::app { '{{ cookiecutter.repo_name }}wagtail':
-        ip               => $ipaddress,
-        ip6              => $ipaddress6,
+        ip               => $::wagtail::site::staging::ats_ip,
+        ip6              => $::wagtail::site::staging::ats_ip6,
         manage_ip        => false,
         manage_db        => true,
         manage_user      => true,
@@ -12,6 +12,7 @@ class wagtail::site::staging::{{ cookiecutter.repo_name }}wagtail inherits wagta
         requirements     => 'requirements.txt',
         servername       => '{{ cookiecutter.repo_name }}-staging.torchboxapps.com',
         alias_redirect   => false,
+        ats              => true,
         codebase_project => '', # CHANGEME
         codebase_repo    => '', # CHANGEME
         git_uri          => 'CODEBASE',
@@ -30,7 +31,14 @@ class wagtail::site::staging::{{ cookiecutter.repo_name }}wagtail inherits wagta
             # List of users to send error emails to. Eg:
             # 'Joe Bloggs' => 'joe.bloggs@torchbox.com',
         },
-        nagios_url       => '/',
+        nagios_url       => '',
+        http_cache       => {
+            enable => true,
+        },
+        ssl              => {
+            mode => 'redirect',
+            site => 'star.torchboxapps.com',
+        },
         auth => {
             enabled       => true,
             hosts         => [ 'tbx' ],
