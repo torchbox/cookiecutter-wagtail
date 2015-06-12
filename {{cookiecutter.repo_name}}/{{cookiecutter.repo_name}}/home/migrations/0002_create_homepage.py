@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
+from django.db import migrations
 
 
 def create_homepage(apps, schema_editor):
@@ -16,7 +16,7 @@ def create_homepage(apps, schema_editor):
 
     # Create content type for homepage model
     homepage_content_type, created = ContentType.objects.get_or_create(
-        model='homepage', app_label='home', defaults={'name': 'Homepage'})
+        model='homepage', app_label='home')
 
     # Create a new homepage
     homepage = HomePage.objects.create(

@@ -1,5 +1,4 @@
 from django.conf.urls import include, url
-from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
@@ -15,10 +14,12 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^search/$', '{{ cookiecutter.repo_name }}.search.views.search', name='search'),
+
 ]
 
 
 if settings.DEBUG:
+    from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
     from django.views.generic import TemplateView
 

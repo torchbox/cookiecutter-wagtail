@@ -1,11 +1,13 @@
 from .base import *
 
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-SECRET_KEY = '7nn(g(lb*8!r_+cc3m8bjxm#xu!q)6fidwgg&$p$6a+alm+eex'
-DATABASES['default']['PASSWORD'] = ''
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'CHANGEME!!!'
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -13,6 +15,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Helpful for local development and running tests
 CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 CELERY_ALWAYS_EAGER = True
+
 
 try:
     from .local import *

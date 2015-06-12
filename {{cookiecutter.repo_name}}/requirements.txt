@@ -1,8 +1,9 @@
-Django==1.7.8
+Django==1.8.2
 psycopg2==2.6
 elasticsearch==1.2.0
 django-redis==3.8.2
-wagtail==0.8.7
 celery==3.1.17
+wagtail==1.0b2
+django-libsass==0.3
 libsass==0.8.2
 Pillow==2.8.1
