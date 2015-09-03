@@ -1,5 +1,5 @@
 {% raw %}{% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailsearchpromotions_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
 
@@ -13,6 +13,7 @@
         <input type="submit" value="Search">
     </form>
 
+    {% get_search_promotions search_query as search_picks %}
     {% if search_picks %}
          <ul>
             {% for pick in search_picks %}
