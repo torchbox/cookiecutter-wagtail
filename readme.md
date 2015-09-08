@@ -21,7 +21,7 @@ Firstly, make sure cookiecutter is installed. See [Installation](http://cookiecu
 
 Then run:
 
-     cookiecutter https://github.com/torchbox/wagtail-cookiecutter.git
+     cookiecutter https://github.com/torchbox/cookiecutter-wagtail.git
 
 
 Answer the questions and you're done!
