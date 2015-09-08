@@ -7,12 +7,12 @@ A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Wagtail s
 What's included
 ---------------
 
- - A Django project with wagtail preinstalled
- - A ``home`` and ``utils`` app to get you going
+ - A Django project with Wagtail preinstalled
+ - A ``home`` and ``search`` app
  - Vagrant configuration (which uses the [torchbox/wagtail](https://github.com/torchbox/vagrant-wagtail-base) base box)
  - Sphinx docs
  - Puppet configuration/Fabfile for Torchbox sites
- 
+
 
 Usage
 -----
