@@ -9,7 +9,7 @@ What's included
 
  - A Django project with Wagtail preinstalled
  - A ``home`` and ``search`` app
- - Vagrant configuration (which uses the [torchbox/wagtail](https://github.com/torchbox/vagrant-wagtail-base) base box)
+ - Vagrant configuration (using the [torchbox/wagtail](https://github.com/torchbox/vagrant-wagtail-base) base box)
  - Sphinx docs
  - Puppet configuration/Fabfile for Torchbox sites
 
@@ -17,7 +17,7 @@ What's included
 Usage
 -----
 
-Firstly, make sure cookiecutter is installed: [Installation](http://cookiecutter.readthedocs.org/en/latest/installation.html)
+Firstly, make sure cookiecutter is installed. See [Installation](http://cookiecutter.readthedocs.org/en/latest/installation.html)
 
 Then run:
 
