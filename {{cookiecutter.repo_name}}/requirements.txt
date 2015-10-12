@@ -3,7 +3,7 @@ psycopg2==2.6.1
 elasticsearch==1.2.0
 django-redis==3.8.2
 celery==3.1.17
-wagtail==1.1rc1
+wagtail==1.1
 django-libsass==0.3
 libsass==0.8.3
 Pillow==2.9.0
