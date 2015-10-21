@@ -117,6 +117,7 @@ if 'ELASTICSEARCH_URL' in env:
             'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
             'URLS': [env['ELASTICSEARCH_URL']],
             'INDEX': APP_NAME,
+            'ATOMIC_REBUILD': True,
         },
     }
 
