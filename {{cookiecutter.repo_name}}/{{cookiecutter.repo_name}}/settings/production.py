@@ -1,4 +1,6 @@
 import os
+import dj_database_url
+
 from .base import *
 
 # Do not set SECRET_KEY, Postgres or LDAP password or any other sensitive data here.
@@ -67,18 +69,23 @@ if 'MEDIA_URL' in env:
 if 'MEDIA_DIR' in env:
     MEDIA_ROOT = env['MEDIA_DIR']
 
+
 # Database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env.get('PGDATABASE', APP_NAME),
-        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {'default': dj_database_url.config()}
 
-        # User, host and port can be configured by the PGUSER, PGHOST and
-        # PGPORT environment variables (these get picked up by libpq).
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': env.get('PGDATABASE', APP_NAME),
+            'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+
+            # User, host and port can be configured by the PGUSER, PGHOST and
+            # PGPORT environment variables (these get picked up by libpq).
+        }
     }
-}
 
 
 # Redis
