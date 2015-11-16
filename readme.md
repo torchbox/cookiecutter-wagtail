@@ -10,8 +10,8 @@ What's included
  - A Django project with Wagtail preinstalled
  - A ``home`` and ``search`` app
  - Vagrant configuration (using the [torchbox/wagtail](https://github.com/torchbox/vagrant-wagtail-base) base box)
+ - Heroku configuration
  - Sphinx docs
- - Puppet configuration/Fabfile for Torchbox sites
 
 
 Usage
