@@ -1,0 +1,1 @@
+python manage.py compress --settings {{ cookiecutter.repo_name }}.settings.production

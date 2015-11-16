@@ -7,3 +7,8 @@ wagtail==1.2rc1
 django-libsass==0.3
 libsass==0.8.3
 Pillow==2.9.0
+
+# Production dependencies
+dj-database-url==0.3.0
+whitenoise==2.0.4
+uwsgi==2.0.11.2
