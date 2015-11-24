@@ -13,8 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {% compress css %}
-            
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/main.scss' %}">
         {% endcompress %}
 
         {% block extra_css %}
@@ -28,7 +27,6 @@
         {% block content %}{% endblock %}
 
         {% compress js %}
-            
             <script type="text/javascript" src="{% static 'js/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.js' %}"></script>
         {% endcompress %}
 
