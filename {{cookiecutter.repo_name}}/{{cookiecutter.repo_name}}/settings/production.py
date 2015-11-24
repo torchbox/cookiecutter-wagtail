@@ -91,7 +91,11 @@ else:
 # Redis
 # Redis location can either be passed through with REDIS_HOST or REDIS_SOCKET
 
-if 'REDIS_HOST' in env:
+if 'REDIS_URL' in env:
+    REDIS_LOCATION = env['REDIS_URL']
+    BROKER_URL = env['REDIS_URL']
+
+elif 'REDIS_HOST' in env:
     REDIS_LOCATION = env['REDIS_HOST']
     BROKER_URL = 'redis://%s' % env['REDIS_HOST']
 
