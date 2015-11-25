@@ -6,18 +6,18 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% compress css %}
             <link rel="stylesheet" type="text/x-scss" href="{% static 'css/main.scss' %}">
         {% endcompress %}
 
         {% block extra_css %}
-            
+
         {% endblock %}
     </head>
 
@@ -31,7 +31,7 @@
         {% endcompress %}
 
         {% block extra_js %}
-            
+
         {% endblock %}
     </body>
 </html>
