@@ -27,7 +27,7 @@
         {% block content %}{% endblock %}
 
         {% compress js %}
-            <script type="text/javascript" src="{% static 'js/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
         {% endcompress %}
 
         {% block extra_js %}
