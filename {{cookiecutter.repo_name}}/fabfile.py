@@ -6,6 +6,7 @@ from fabric.api import *
 env.roledefs = {
     'production': [],
     'staging': [],
+    'demo': ['dokku@demo.torchboxapps.com'],
 }
 
 
@@ -95,3 +96,78 @@ def pull_staging_data():
         remote_dump_path='/usr/local/django/{{ cookiecutter.repo_name }}/tmp/',
         local_dump_path='/tmp/',
     )
+
+
+def dokku(command, **kwargs):
+    kwargs.setdefault('shell', False)
+    return run(command, **kwargs)
+
+
+class DemoEnvironment(object):
+
+    def __init__(self, app, branch):
+        self.app = app
+        self.branch = branch
+        self.name = app + '-' + branch.replace('/', '-')
+
+    def set_config(self, config):
+        config_string = ' '.join([
+            name + '=' + value
+            for name, value in config.items()
+        ])
+        dokku('config:set %s %s' % (self.name, config_string), warn_only=True)
+
+    def run(self, command, interactive=False):
+        dokku('run %s %s' % (self.name, command))
+
+    def django_admin(self, command, interactive=False):
+        self.run('django-admin %s' % command, interactive=interactive)
+
+    def push(self):
+        local('git push %s:%s %s:master' % (env['host_string'], self.name, self.branch))
+
+    def exists(self):
+        return dokku('config %s' % self.name, quiet=True).succeeded
+
+    def create(self):
+        # Create app
+        dokku('apps:create %s' % self.name)
+
+        # Create database
+        dokku('postgres:create %s' % self.name)
+        dokku('postgres:link %s %s' % (self.name, self.name))
+
+        # Create redis instance
+        dokku('redis:create %s' % self.name)
+        dokku('redis:link %s %s' % (self.name, self.name))
+
+        # Create volume for media
+        # dokku('volume:create %s /app/media/' % self.name)
+        # dokku('volume:link %s %s' % (self.name, self.name))
+
+        # Extra configuration
+        self.set_config({
+            'DJANGO_SETTINGS_MODULE': '{{ cookiecutter.repo_name }}.settings.production',
+            'SECRET_KEY': 'demo',
+            'ALLOWED_HOSTS': self.name + '.demo.torchboxapps.com'
+        })
+
+    def update(self):
+        self.push()
+        self.django_admin('migrate')
+
+
+@roles('demo')
+def demo():
+    branch = local('git branch | grep "^*" | cut -d" " -f2', capture=True)
+
+    env = DemoEnvironment('{{ cookiecutter.repo_name }}', branch)
+
+    # Create the environment
+    if not env.exists():
+        print("Creating testing environment for %s..." % branch)
+        env.create()
+
+    # Update it
+    print("Updating testing environment...")
+    env.update()
