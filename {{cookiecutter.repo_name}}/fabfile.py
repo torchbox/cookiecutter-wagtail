@@ -158,16 +158,19 @@ class DemoEnvironment(object):
 
 
 @roles('demo')
-def demo():
+def demo(subcommand='deploy'):
     branch = local('git branch | grep "^*" | cut -d" " -f2', capture=True)
 
     env = DemoEnvironment('{{ cookiecutter.repo_name }}', branch)
 
-    # Create the environment
-    if not env.exists():
-        print("Creating testing environment for %s..." % branch)
-        env.create()
+    if subcommand == 'deploy':
+        # Create the environment
+        if not env.exists():
+            print("Creating demo environment for %s..." % branch)
+            env.create()
 
-    # Update it
-    print("Updating testing environment...")
-    env.update()
+        # Update it
+        print("Updating demo environment...")
+        env.update()
+    else:
+        raise Exception("Unrecognised command: " + subcommand)
