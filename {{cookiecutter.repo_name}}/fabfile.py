@@ -153,6 +153,7 @@ class DemoEnvironment(object):
 
         # Extra configuration
         self.set_config({
+            'APP_NAME': self.name,
             'DJANGO_SETTINGS_MODULE': '{{ cookiecutter.repo_name }}.settings.production',
             'SECRET_KEY': 'demo',
             'ALLOWED_HOSTS': self.name + '.demo.torchboxapps.com'
