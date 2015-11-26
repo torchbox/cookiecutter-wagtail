@@ -128,6 +128,8 @@ class DemoEnvironment(object):
 
     def push_postgres_data(self, localdb):
         local('pg_dump -c --no-acl --no-owner %s | ssh %s "postgres:connect %s"' % (localdb, env['host_string'], self.name))
+        self.django_admin('migrate')
+        self.django_admin('update_index')
 
     def exists(self):
         return dokku('config %s' % self.name, quiet=True).succeeded
