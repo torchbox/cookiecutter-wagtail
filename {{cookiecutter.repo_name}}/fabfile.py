@@ -149,16 +149,17 @@ class DemoEnvironment(object):
         # Link to central Elasticsearch instance
         dokku('elasticsearch:link elasticsearch %s' % self.name)
 
-        # Create volume for media
-        # dokku('volume:create %s /app/media/' % self.name)
-        # dokku('volume:link %s %s' % (self.name, self.name))
+        # Mount media folder
+        dokku('docker-options:add %s deploy "-v /var/lib/app-media/%s/:/app/media/"' % (self.name, self.name))
+        dokku('docker-options:add %s run "-v /var/lib/app-media/%s/:/app/media/"' % (self.name, self.name))
 
         # Extra configuration
         self.set_config({
             'APP_NAME': self.name,
             'DJANGO_SETTINGS_MODULE': '{{ cookiecutter.repo_name }}.settings.production',
             'SECRET_KEY': 'demo',
-            'ALLOWED_HOSTS': self.name + '.demo.torchboxapps.com'
+            'ALLOWED_HOSTS': self.name + '.demo.torchboxapps.com',
+            'MEDIA_URL': 'http://media.demo.torchboxapps.com/%s/' % self.name,
         })
 
     def update(self):
