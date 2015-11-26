@@ -144,6 +144,9 @@ class DemoEnvironment(object):
         dokku('redis:create %s' % self.name)
         dokku('redis:link %s %s' % (self.name, self.name))
 
+        # Link to central Elasticsearch instance
+        dokku('elasticsearch:link elasticsearch %s' % self.name)
+
         # Create volume for media
         # dokku('volume:create %s /app/media/' % self.name)
         # dokku('volume:link %s %s' % (self.name, self.name))
@@ -158,6 +161,7 @@ class DemoEnvironment(object):
     def update(self):
         self.push()
         self.django_admin('migrate')
+        self.django_admin('update_index')
 
 
 @roles('demo')
