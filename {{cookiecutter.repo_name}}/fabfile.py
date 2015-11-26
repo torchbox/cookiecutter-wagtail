@@ -126,6 +126,9 @@ class DemoEnvironment(object):
     def push(self):
         local('git push %s:%s %s:master' % (env['host_string'], self.name, self.branch))
 
+    def push_postgres_data(self, localdb):
+        local('pg_dump -c --no-acl --no-owner %s | ssh %s "postgres:connect %s"' % (localdb, env['host_string'], self.name))
+
     def exists(self):
         return dokku('config %s' % self.name, quiet=True).succeeded
 
@@ -172,5 +175,12 @@ def demo(subcommand='deploy'):
         # Update it
         print("Updating demo environment...")
         env.update()
+    elif subcommand == 'pushdb':
+        # Check the environment exists
+        if not env.exists():
+            raise Exception("Demo environment doesn't exist yet. Please run 'fab demo' first.")
+
+        # Push data
+        env.push_postgres_data(localdb='{{ cookiecutter.repo_name }}')
     else:
         raise Exception("Unrecognised command: " + subcommand)
