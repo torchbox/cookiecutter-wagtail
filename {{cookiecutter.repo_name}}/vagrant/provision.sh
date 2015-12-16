@@ -41,7 +41,6 @@ export DJANGO_SETTINGS_MODULE=$PROJECT_NAME.settings.dev
 
 alias dj="django-admin.py"
 alias djrun="dj runserver 0.0.0.0:8000"
-alias djcelery="celery -A $PROJECT_NAME worker --loglevel=info -s /tmp/celerybeat-schedule \$1"
 
 source $VIRTUALENV_DIR/bin/activate
 export PS1="[$PROJECT_NAME \W]\\$ "
