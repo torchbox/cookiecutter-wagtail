@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     '{{ cookiecutter.repo_name }}.home',
     '{{ cookiecutter.repo_name }}.search',
 
@@ -50,9 +50,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -64,7 +64,7 @@ MIDDLEWARE_CLASSES = (
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
-)
+]
 
 ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
 
@@ -117,15 +117,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATICFILES_FINDERS = (
+STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
-)
+]
 
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
-)
+]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
@@ -137,9 +137,9 @@ MEDIA_URL = '/media/'
 # Django compressor settings
 # http://django-compressor.readthedocs.org/en/latest/settings/
 
-COMPRESS_PRECOMPILERS = (
+COMPRESS_PRECOMPILERS = [
     ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+]
 
 
 # Use Redis as the cache backend for extra performance
