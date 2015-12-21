@@ -159,12 +159,12 @@ LOGGING = {
 }
 
 
-# Log errors to file
-if 'ERROR_LOG' in env:
+if 'LOG_DIR' in env:
+    # Error log
     LOGGING['handlers']['errors_file'] = {
         'level':        'ERROR',
         'class':        'cloghandler.ConcurrentRotatingFileHandler',
-        'filename':     env['ERROR_LOG'],
+        'filename':     os.path.join(env['LOG_DIR'], 'error.log'),
         'maxBytes':     5242880, # 5MB
         'backupCount':  5
     }
