@@ -163,7 +163,7 @@ LOGGING = {
 if 'ERROR_LOG' in env:
     LOGGING['handlers']['errors_file'] = {
         'level':        'ERROR',
-        'class':        'logging.handlers.RotatingFileHandler',
+        'class':        'cloghandler.ConcurrentRotatingFileHandler',
         'filename':     env['ERROR_LOG'],
         'maxBytes':     5242880, # 5MB
         'backupCount':  5
