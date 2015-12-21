@@ -150,6 +150,12 @@ LOGGING = {
         }
     },
     'loggers': {
+        'wagtail': {
+            'handlers':     [],
+            'level':        'INFO',
+            'propagate':    False,
+            'formatter':    'verbose',
+        },
         'django.request': {
             'handlers':     ['mail_admins'],
             'level':        'ERROR',
@@ -167,6 +173,16 @@ LOGGING = {
 
 
 if 'LOG_DIR' in env:
+    # Wagtail log
+    LOGGING['handlers']['wagtail_file'] = {
+        'level':        'INFO',
+        'class':        'cloghandler.ConcurrentRotatingFileHandler',
+        'filename':     os.path.join(env['LOG_DIR'], 'wagtail.log'),
+        'maxBytes':     5242880, # 5MB
+        'backupCount':  5
+    }
+    LOGGING['loggers']['wagtail']['handlers'].append('wagtail_file')
+
     # Error log
     LOGGING['handlers']['errors_file'] = {
         'level':        'ERROR',
