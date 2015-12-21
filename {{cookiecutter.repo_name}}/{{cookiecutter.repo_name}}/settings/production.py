@@ -150,6 +150,12 @@ LOGGING = {
         }
     },
     'loggers': {
+        '{{ cookiecutter.repo_name }}': {
+            'handlers':     [],
+            'level':        'INFO',
+            'propagate':    False,
+            'formatter':    'verbose',
+        },
         'wagtail': {
             'handlers':     [],
             'level':        'INFO',
@@ -173,6 +179,16 @@ LOGGING = {
 
 
 if 'LOG_DIR' in env:
+    # {{ cookiecutter.project_name }} log
+    LOGGING['handlers']['{{ cookiecutter.repo_name }}_file'] = {
+        'level':        'INFO',
+        'class':        'cloghandler.ConcurrentRotatingFileHandler',
+        'filename':     os.path.join(env['LOG_DIR'], '{{ cookiecutter.repo_name }}.log'),
+        'maxBytes':     5242880, # 5MB
+        'backupCount':  5
+    }
+    LOGGING['loggers']['wagtail']['handlers'].append('{{ cookiecutter.repo_name }}_file')
+
     # Wagtail log
     LOGGING['handlers']['wagtail_file'] = {
         'level':        'INFO',
