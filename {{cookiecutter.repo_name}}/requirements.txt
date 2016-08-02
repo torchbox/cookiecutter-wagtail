@@ -7,6 +7,9 @@ django-libsass==0.6
 libsass==0.8.3
 Pillow==2.9.0
 
+# Development tools
+stellar==0.4.3
+
 # Production dependencies
 dj-database-url==0.3.0
 whitenoise==2.0.4
